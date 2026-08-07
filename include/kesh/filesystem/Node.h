@@ -30,7 +30,7 @@ enum fruit
 
     class Node
     {
-        
+        friend class Directory;
         private:
         std::string name;
         std::weak_ptr<Directory> parent;

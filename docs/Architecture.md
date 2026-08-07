@@ -1,5 +1,19 @@
 # Memory Ownership
 
-Directories own their children using shared_ptr<Node>.
+## Overview
 
-Each Node stores a weak_ptr<Directory> to its parent to avoid cyclic references.
+Kesh Shell models the filesystem as a tree.
+
+Each Directory owns its child nodes using:
+
+- std::shared_ptr<Node>
+
+Each Node stores a non-owning reference to its parent using:
+
+- std::weak_ptr<Directory>
+
+## Why?
+
+If both parent and child used shared_ptr, they would keep each other alive forever, creating a reference cycle.
+
+Using weak_ptr for the parent breaks the cycle while still allowing upward navigation (`cd ..`, `pwd`).

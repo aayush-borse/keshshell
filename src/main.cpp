@@ -1,21 +1,35 @@
 #include <iostream>
 #include <memory>
+
 #include "kesh/filesystem/File.h"
+#include "kesh/filesystem/Directory.h"
 
 int main()
 {
-    auto file = std::make_shared<File>("hello.txt");
+    auto root = std::make_shared<Directory>("Root");
 
-    file->write("Welcome to Kesh Shell!");
+    auto file1 = std::make_shared<File>("hello.txt");
+    auto file2 = std::make_shared<File>("notes.txt");
 
-    std::cout << "Name    : " << file->getName() << '\n';
-    std::cout << "Content : " << file->read() << '\n';
-    std::cout << "Size    : " << file->getSize() << " bytes\n";
+    file1->write("Hello User");
+    file2->write("Welcome to Kesh Shell we are here to compile!!");
 
-    if (file->getType() == NodeType::File)
-    {
-        std::cout << "Type    : File\n";
-    }
+    root->addChild(file1);
+    root->addChild(file2);
+
+    auto found = root->findChild("notes.txt");
+
+if (found)
+{
+    std::cout << "Found: " << found->getName() << '\n';
+}
+else
+{
+    std::cout << "File not found.\n";
+}
+
+    std::cout << "Directory: " << root->getName() << '\n';
+    std::cout << "Total Size: " << root->getSize() << " bytes\n";
 
     return 0;
 }

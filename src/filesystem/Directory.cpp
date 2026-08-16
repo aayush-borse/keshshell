@@ -21,3 +21,29 @@ std::size_t Directory::getSize() const
 
     return totalSize;
 }
+
+bool Directory::addChild(std::shared_ptr<Node> child)
+
+{
+    if (!child)
+    {
+        return false;
+    }
+    children.push_back(child);
+
+    return true;
+}
+
+
+std::shared_ptr<Node> Directory::findChild(const std::string& name) const
+{
+    for (const auto& child : children)
+    {
+        if (child->getName() == name)
+        {
+            return child;
+        }
+    }
+
+    return nullptr;
+}

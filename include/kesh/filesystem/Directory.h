@@ -13,10 +13,14 @@ private:
 
 
 public:
-   explicit Directory(const std:: string& name);
+   explicit Directory(const std::string& name);
 
    NodeType getType() const override;
 
    std::size_t getSize() const override;
+
+   bool addChild(std::shared_ptr<Node> child);
+
+   std::shared_ptr<Node> findChild(const std::string& name) const;
 
 };

@@ -16,3 +16,7 @@ void Node::setParent(std::weak_ptr<Directory> parent)
 {
     this->parent = std::move(parent);
 }
+std::shared_ptr<Directory> Node::getParent() const
+{
+    return parent.lock();
+}

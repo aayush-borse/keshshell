@@ -23,12 +23,18 @@ std::size_t Directory::getSize() const
 }
 
 bool Directory::addChild(std::shared_ptr<Node> child)
-
 {
     if (!child)
     {
         return false;
     }
+
+    auto directory = std::dynamic_pointer_cast<Directory>(
+        shared_from_this()
+    );
+
+    child->setParent(directory);
+
     children.push_back(child);
 
     return true;

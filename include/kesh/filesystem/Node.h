@@ -28,7 +28,8 @@ enum fruit
     */
 
 
-    class Node
+    class Node : public std::enable_shared_from_this<Node>
+
     {
         friend class Directory;
         private:
@@ -49,5 +50,6 @@ enum fruit
             virtual NodeType getType() const = 0;
 
             virtual std::size_t getSize() const = 0;
+            std::shared_ptr<Directory> getParent() const;
         // Public api
     };

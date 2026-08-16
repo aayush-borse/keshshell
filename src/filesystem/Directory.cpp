@@ -47,3 +47,8 @@ std::shared_ptr<Node> Directory::findChild(const std::string& name) const
 
     return nullptr;
 }
+
+const std::vector<std::shared_ptr<Node>>& Directory::getChildren() const
+{
+    return children;
+}

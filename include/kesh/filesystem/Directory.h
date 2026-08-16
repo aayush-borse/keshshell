@@ -22,5 +22,6 @@ public:
    bool addChild(std::shared_ptr<Node> child);
 
    std::shared_ptr<Node> findChild(const std::string& name) const;
-
+    
+   const std::vector<std::shared_ptr<Node>>& getChildren() const;
 };

@@ -1,6 +1,6 @@
 #pragma once
 #include <memory>
-
+#include <string>
 #include "kesh/filesystem/Directory.h"
 
 
@@ -12,6 +12,7 @@ class FileSystem
     
     public:
     FileSystem();
+    bool createDirectory(const std::string& name);
 
     std::shared_ptr<Directory> getRoot() const;
 };
